@@ -30,3 +30,9 @@ timerfd_create(2)把时间变成了一个文件描述符，该“文件”在定
 
 _本实现中每一个线程中都持有一个定时器优先队列，超时时间最小的定时器会位于队首，并没有注册timerfd和使用SIGALRM信号，所以即使某个定时器的超时发生也不会唤醒线程，而选择在主循环的最后检查队列中的定时器是否超时，如果超时了再删从队列中删除该定时器。这样考虑的原因是这里对超时的要求并不高，即使队列中有部分定时器已经超时很久了，最后在主循环中这些空闲连接也会被剔除的。_
 
+## 参考文献
+1. [游双. Linux高性能服务器编程[M]. 北京:机械工业出版社,2013.](https://book.douban.com/subject/24722611/) 
+2. [陈硕. Linux多线程服务端编程——使用muduo C++网络库. 北京:电子工业出版社,2013](https://book.douban.com/subject/20471211/)
+3. https://github.com/chenshuo/recipes
+4. https://github.com/linyacool/WebServer
+5. https://github.com/qinguoyi/TinyWebServer
