@@ -38,7 +38,11 @@ _本实现中每一个线程中都持有一个定时器优先队列，超时时�
 
 _本实现中采用基于链表（使用细粒度锁）的无界阻塞队列来实现日志消息的传递：生产者每产生一条日志（表示为std::string），就往阻塞队列BlockQueue<std::string>中尾部push一条日志消息，同时通知消费者从阻塞队列中取消息；消费者等待在阻塞队列头部，从队列中不断的取出日志，同时往磁盘上写I/O。_
 
-在前端日志写入函数的API风格上采用了Python的format风格，format(format_str,  positional_args)，借用了fmt库，优点是性能好，类型安全，能自动管理内存，编译时给出错误提醒，已经进入c++20标准。而没有使用C的printf(fmt, ...)风格，print存在类型安全问题和·C++的stream <<风格，iostream存在性能慢的问题。
+在前端日志写入函数的API风格上采用了Python的format风格:
+```format(format_str,  positional_args)```
+借用了fmt库，优点是性能好，类型安全，能自动管理内存，编译时给出错误提醒，已经进入c++20标准。
+
+而没有使用C的printf(fmt, ...)风格，print存在类型安全问题和·C++的stream <<风格，iostream存在性能慢的问题。
 
 #### 改进之处
 
@@ -60,3 +64,4 @@ _本实现中采用基于链表（使用细粒度锁）的无界阻塞队列来�
 3. https://github.com/chenshuo/recipes
 4. https://github.com/linyacool/WebServer
 5. https://github.com/qinguoyi/TinyWebServer
+6. https://github.com/fmtlib/fmt
