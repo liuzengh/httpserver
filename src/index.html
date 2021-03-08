@@ -1,0 +1,422 @@
+<!DOCTYPE html><html><head>
+    <title>project-based-learning</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="file:///c:\Users\zengh\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.5.16\node_modules\@shd101wyy\mume\dependencies\katex\katex.min.css">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <style>
+    /**
+* prism.js Github theme based on GitHub's theme.
+* @author Sam Clarke
+*/
+code[class*="language-"],
+pre[class*="language-"] {
+color: #333;
+background: none;
+font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+text-align: left;
+white-space: pre;
+word-spacing: normal;
+word-break: normal;
+word-wrap: normal;
+line-height: 1.4;
+
+-moz-tab-size: 8;
+-o-tab-size: 8;
+tab-size: 8;
+
+-webkit-hyphens: none;
+-moz-hyphens: none;
+-ms-hyphens: none;
+hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+padding: .8em;
+overflow: auto;
+/* border: 1px solid #ddd; */
+border-radius: 3px;
+/* background: #fff; */
+background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+padding: .1em;
+border-radius: .3em;
+white-space: normal;
+background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+color: #969896;
+}
+
+.token.cdata {
+color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+color: #795da3;
+}
+
+.token.entity {
+cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+font-weight: bold;
+color: #1d3e81;
+}
+
+.token.list {
+color: #ed6a43;
+}
+
+.token.inserted {
+background-color: #eaffea;
+color: #55a532;
+}
+
+.token.deleted {
+background-color: #ffecec;
+color: #bd2c00;
+}
+
+.token.bold {
+font-weight: bold;
+}
+
+.token.italic {
+font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+color: #63a35c;
+}
+
+code.language-yaml {
+color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+color: #795da3;
+}
+
+.language-makefile .token.variable {
+color: #183691;
+}
+
+.language-makefile .token.builtin {
+color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+color: #0086b3;
+}
+
+/* highlight */
+pre[data-line] {
+position: relative;
+padding: 1em 0 1em 3em;
+}
+pre[data-line] .line-highlight-wrapper {
+position: absolute;
+top: 0;
+left: 0;
+background-color: transparent;
+display: block;
+width: 100%;
+}
+
+pre[data-line] .line-highlight {
+position: absolute;
+left: 0;
+right: 0;
+padding: inherit 0;
+margin-top: 1em;
+background: hsla(24, 20%, 50%,.08);
+background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+pointer-events: none;
+line-height: inherit;
+white-space: pre;
+}
+
+pre[data-line] .line-highlight:before, 
+pre[data-line] .line-highlight[data-end]:after {
+content: attr(data-start);
+position: absolute;
+top: .4em;
+left: .6em;
+min-width: 1em;
+padding: 0 .5em;
+background-color: hsla(24, 20%, 50%,.4);
+color: hsl(24, 20%, 95%);
+font: bold 65%/1.5 sans-serif;
+text-align: center;
+vertical-align: .3em;
+border-radius: 999px;
+text-shadow: none;
+box-shadow: 0 1px white;
+}
+
+pre[data-line] .line-highlight[data-end]:after {
+content: attr(data-end);
+top: auto;
+bottom: .4em;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+    </style>
+  </head>
+  <body for="html-export">
+    <div class="mume markdown-preview  ">
+    <h1 class="mume-header" id="cc-project-based-learning">C/C++ Project Based Learning</h1>
+
+<h2 class="mume-header" id="cc">C/C++:</h2>
+
+<ul>
+<li><a href="http://www.craftinginterpreters.com/">Build an Interpreter</a> (Chapter 14 on is written in C)</li>
+<li><a href="https://arjunsreedharan.org/post/148675821737/memory-allocators-101-write-a-simple-memory">Memory Allocators 101 - Write a simple memory allocator</a></li>
+<li><a href="https://brennan.io/2015/01/16/write-a-shell-in-c/">Write a Shell in C</a></li>
+<li><a href="https://www.cs.nmsu.edu/~pfeiffer/fuse-tutorial/">Write a FUSE Filesystem</a></li>
+<li><a href="http://viewsourcecode.org/snaptoken/kilo/">Build Your Own Text Editor</a></li>
+<li><a href="http://www.buildyourownlisp.com/">Build Your Own Lisp</a></li>
+<li><a href="https://nesdoug.com/">How to Program an NES Game in C</a></li>
+<li><a href="https://github.com/tuhdo/os01">Write an OS from scratch</a></li>
+<li><a href="https://github.com/cfenollosa/os-tutorial">How to create an OS from scratch </a></li>
+<li><a href="https://austinmorlan.com/posts/chip8_emulator/">Building a CHIP-8 Emulator</a></li>
+<li><a href="http://lazyfoo.net/tutorials/SDL/">Beginning Game Programming with C++ and SDL</a></li>
+<li><a href="http://codecapsule.com/2012/11/07/ikvs-implementing-a-key-value-store-table-of-contents/">Implementing a Key-Value Store</a></li>
+<li>Tiny 3D graphics projects
+<ul>
+<li><a href="https://github.com/ssloy/tinyrenderer/wiki">Tiny Renderer or how OpenGL works: software rendering in 500 lines of code</a></li>
+<li><a href="https://github.com/ssloy/tinyraytracer/wiki">Understandable RayTracing in 256 lines of bare C++</a></li>
+<li><a href="https://github.com/ssloy/tinykaboom/wiki">KABOOM! in 180 lines of bare C++</a></li>
+<li><a href="https://github.com/ssloy/tinyraycaster/wiki">486 lines of C++: old-school FPS in a weekend</a></li>
+</ul>
+</li>
+<li>Writing a minimal x86-64 JIT compiler in C++
+<ul>
+<li><a href="https://solarianprogrammer.com/2018/01/10/writing-minimal-x86-64-jit-compiler-cpp/">Part 1</a></li>
+<li><a href="https://solarianprogrammer.com/2018/01/12/writing-minimal-x86-64-jit-compiler-cpp-part-2/">Part 2</a></li>
+</ul>
+</li>
+<li><a href="http://howistart.org/posts/cpp/1/index.html">Build a Live Code-reloader Library for C++</a></li>
+<li><a href="https://github.com/jamesroutley/write-a-hash-table">Write a hash table in C</a></li>
+<li><a href="https://cstack.github.io/db_tutorial/">Let&apos;s Build a Simple Database</a></li>
+<li><a href="http://arjunsreedharan.org/post/82710718100/kernel-101-lets-write-a-kernel">Let&apos;s Write a Kernel</a></li>
+<li><a href="http://3zanders.co.uk/2017/10/13/writing-a-bootloader/">Write a Bootloader in C</a></li>
+<li><a href="https://blog.lizzie.io/linux-containers-in-500-loc.html">Linux Container in 500 Lines of Code</a></li>
+<li><a href="https://justinmeiners.github.io/lc3-vm/">Write Your Own Virtual Machine</a></li>
+<li><a href="https://david942j.blogspot.com/2018/10/note-learning-kvm-implement-your-own.html">Learning KVM - Implement Your Own Linux Kernel</a></li>
+<li>Write a C compiler
+<ul>
+<li><a href="https://norasandler.com/2017/11/29/Write-a-Compiler.html">Part 1: Integers, Lexing and Code Generation</a></li>
+<li><a href="https://norasandler.com/2017/12/05/Write-a-Compiler-2.html">Part 2: Unary Operators</a></li>
+<li><a href="https://norasandler.com/2017/12/15/Write-a-Compiler-3.html">Part 3: Binary Operators</a></li>
+<li><a href="https://norasandler.com/2017/12/28/Write-a-Compiler-4.html">Part 4: Even More Binary Operators</a></li>
+<li><a href="https://norasandler.com/2018/01/08/Write-a-Compiler-5.html">Part 5: Local Variables</a></li>
+<li><a href="https://norasandler.com/2018/02/25/Write-a-Compiler-6.html">Part 6: Conditionals</a></li>
+<li><a href="https://norasandler.com/2018/03/14/Write-a-Compiler-7.html">Part 7: Compound Statements</a></li>
+<li><a href="https://norasandler.com/2018/04/10/Write-a-Compiler-8.html">Part 8: Loops</a></li>
+<li><a href="https://norasandler.com/2018/06/27/Write-a-Compiler-9.html">Part 9: Functions</a></li>
+<li><a href="https://norasandler.com/2019/02/18/Write-a-Compiler-10.html">Part 10: Global Variables</a></li>
+</ul>
+</li>
+<li><a href="https://llvm.org/docs/tutorial/#kaleidoscope-implementing-a-language-with-llvm">Implementing a Language with LLVM</a></li>
+<li><a href="https://jguegant.github.io//jguegant.github.io/blogs/tech/meta-crush-saga.html">Meta Crush Saga: a C++17 compile-time game</a></li>
+<li><a href="https://gist.github.com/nadavrot/5b35d44e8ba3dd718e595e40184d03f0">High-Performance Matrix Multiplication</a></li>
+<li>Space Invaders from Scratch
+<ul>
+<li><a href="http://nicktasios.nl/posts/space-invaders-from-scratch-part-1.html">Part 1</a></li>
+<li><a href="http://nicktasios.nl/posts/space-invaders-from-scratch-part-2.html">Part 2</a></li>
+<li><a href="http://nicktasios.nl/posts/space-invaders-from-scratch-part-3.html">Part 3</a></li>
+<li><a href="http://nicktasios.nl/posts/space-invaders-from-scratch-part-4.html">Part 4</a></li>
+<li><a href="http://nicktasios.nl/posts/space-invaders-from-scratch-part-5.html">Part 5</a></li>
+</ul>
+</li>
+<li><a href="http://javilop.com/gamedev/tetris-tutorial-in-c-platform-independent-focused-in-game-logic-for-beginners/">Tetris Tutorial in C++ Platform Independent</a></li>
+<li>Writing a Linux Debugger
+<ul>
+<li><a href="https://blog.tartanllama.xyz/writing-a-linux-debugger-setup/">Part 1: Setup</a></li>
+<li><a href="https://blog.tartanllama.xyz/writing-a-linux-debugger-breakpoints/">Part 2: Breakpoints</a></li>
+<li><a href="https://blog.tartanllama.xyz/writing-a-linux-debugger-registers/">Part 3: Registers and memory</a></li>
+<li><a href="https://blog.tartanllama.xyz/writing-a-linux-debugger-elf-dwarf/">Part 4: Elves and dwarves</a></li>
+<li><a href="https://blog.tartanllama.xyz/writing-a-linux-debugger-source-signal/">Part 5: Source and signals</a></li>
+<li><a href="https://blog.tartanllama.xyz/writing-a-linux-debugger-dwarf-step/">Part 6: Source-level stepping</a></li>
+<li><a href="https://blog.tartanllama.xyz/writing-a-linux-debugger-source-break/">Part 7: Source-level breakpoints</a></li>
+<li><a href="https://blog.tartanllama.xyz/writing-a-linux-debugger-unwinding/">Part 8: Stack unwinding</a></li>
+<li><a href="https://blog.tartanllama.xyz/writing-a-linux-debugger-variables/">Part 9: Handling variables</a></li>
+<li><a href="https://blog.tartanllama.xyz/writing-a-linux-debugger-advanced-topics/">Part 10: Advanced topics</a></li>
+</ul>
+</li>
+</ul>
+<h3 class="mume-header" id="network-programming">Network programming</h3>
+
+<ul>
+<li>
+<p>Let&apos;s Code a TCP/IP Stack</p>
+<ul>
+<li><a href="http://www.saminiir.com/lets-code-tcp-ip-stack-1-ethernet-arp/">Part 1: Ethernet &amp; ARP</a></li>
+<li><a href="http://www.saminiir.com/lets-code-tcp-ip-stack-2-ipv4-icmpv4/">Part 2: IPv4 &amp; ICMPv4</a></li>
+<li><a href="http://www.saminiir.com/lets-code-tcp-ip-stack-3-tcp-handshake/">Part 3: TCP Basics &amp; Handshake</a></li>
+<li><a href="http://www.saminiir.com/lets-code-tcp-ip-stack-4-tcp-data-flow-socket-api/">Part 4: TCP Data Flow &amp; Socket API</a></li>
+<li><a href="http://www.saminiir.com/lets-code-tcp-ip-stack-5-tcp-retransmission/">Part 5: TCP Retransmission</a></li>
+</ul>
+</li>
+<li>
+<p>Programming concurrent servers</p>
+<ul>
+<li><a href="https://eli.thegreenplace.net/2017/concurrent-servers-part-1-introduction/">Part 1 - Introduction</a></li>
+<li><a href="https://eli.thegreenplace.net/2017/concurrent-servers-part-2-threads/">Part 2 - Threads</a></li>
+<li><a href="https://eli.thegreenplace.net/2017/concurrent-servers-part-3-event-driven/">Part 3 - Event-driven</a></li>
+<li><a href="https://eli.thegreenplace.net/2017/concurrent-servers-part-4-libuv/">Part 4 - libuv</a></li>
+<li><a href="https://eli.thegreenplace.net/2017/concurrent-servers-part-5-redis-case-study/">Part 5 - Redis case study</a></li>
+<li><a href="https://eli.thegreenplace.net/2018/concurrent-servers-part-6-callbacks-promises-and-asyncawait/">Part 6 - Callbacks, Promises and async/await</a></li>
+</ul>
+</li>
+<li>
+<p>MQTT Broker from scratch</p>
+<ul>
+<li><a href="https://codepr.github.io/posts/sol-mqtt-broker">Part 1 - The protocol</a></li>
+<li><a href="https://codepr.github.io/posts/sol-mqtt-broker-p2">Part 2 - Networking</a></li>
+<li><a href="https://codepr.github.io/posts/sol-mqtt-broker-p3">Part 3 - Server</a></li>
+<li><a href="https://codepr.github.io/posts/sol-mqtt-broker-p4">Part 4 - Data structures</a></li>
+<li><a href="https://codepr.github.io/posts/sol-mqtt-broker-p5">Part 5 - Topic abstraction</a></li>
+<li><a href="https://codepr.github.io/posts/sol-mqtt-broker-p6">Part 6 - Handlers</a></li>
+<li><a href="https://codepr.github.io/posts/sol-mqtt-broker-bonus">Bonus - Multithreading</a></li>
+</ul>
+</li>
+</ul>
+<h3 class="mume-header" id="opengl">OpenGL:</h3>
+
+<ul>
+<li>Creating 2D Breakout game clone in C++ with OpenGL
+<ul>
+<li><a href="https://learnopengl.com/In-Practice/2D-Game/Breakout">Breakout</a></li>
+<li><a href="https://learnopengl.com/In-Practice/2D-Game/Setting-up">Setting up</a></li>
+<li><a href="https://learnopengl.com/In-Practice/2D-Game/Rendering-Sprites">Rendering Sprites</a></li>
+<li><a href="https://learnopengl.com/In-Practice/2D-Game/Levels">Levels</a></li>
+<li>Collisions
+<ul>
+<li><a href="https://learnopengl.com/In-Practice/2D-Game/Collisions/Ball">Ball</a></li>
+<li><a href="https://learnopengl.com/In-Practice/2D-Game/Collisions/Collision-detection">Collision detection</a></li>
+<li><a href="https://learnopengl.com/In-Practice/2D-Game/Collisions/Collision-resolution">Collision resolution</a></li>
+</ul>
+</li>
+<li><a href="https://learnopengl.com/In-Practice/2D-Game/Particles">Particles</a></li>
+<li><a href="https://learnopengl.com/In-Practice/2D-Game/Postprocessing">Postprocessing</a></li>
+<li><a href="https://learnopengl.com/In-Practice/2D-Game/Powerups">Powerups</a></li>
+<li><a href="https://learnopengl.com/In-Practice/2D-Game/Audio">Audio</a></li>
+<li><a href="https://learnopengl.com/In-Practice/2D-Game/Render-text">Render text</a></li>
+<li><a href="https://learnopengl.com/In-Practice/2D-Game/Final-thoughts">Final thoughts</a></li>
+</ul>
+</li>
+<li><a href="https://handmadehero.org">Handmade Hero</a></li>
+<li><a href="https://www.youtube.com/playlist?list=PLMZ_9w2XRxiZq1vfw1lrpCMRDufe2MKV_">How to Make Minecraft in C++/OpenGL</a> (video)</li>
+</ul>
+
+    </div>
+    
+    
+  
+  
+  
+  
+  
+  
+  
+  
+
+  </body></html>
