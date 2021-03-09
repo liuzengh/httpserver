@@ -1,8 +1,8 @@
-# webserver
+# HttpServer
 ## 项目简介
 本项目为在Linux下用C++11编写的轻量级多线程http服务器，支持解析get和head请求，经Webbench压力测试在一般机器上的吞吐量可达每秒处理上万次请求。
 
-[测试页面](https://github.com/liuzengh/httpserver/blob/main/src/index.html)
+
 
 ### 主要的技术点：
 - Reactor事件处理模式，主线程管理监听socket，以轮询的方式把连接socket分发给工作线程管理
@@ -22,6 +22,35 @@
 - 运行，默认服务器会监听9999端口，并开启4个工作线程
 
 > `./HttpServer`
+
+## 测试
+关于如何测试一些方法我参考了这篇文章：[从压测工具谈并发、压力、吞吐量](https://www.xmeter.net/wordpress/?p=152)
+### 性能测试
+- 吞吐量，指标为每秒请求数(QPS, Queries Per Second) 。
+
+> 计算公式1（从客户端的角度）：吞吐量 = 请求总数/总时长
+> 计算公式2（从服务器端的角度）:吞吐量 = 并发数/平均响应时间
+
+两个公式虽然表达形式上不一样，但是理论上都是可行的。
+
+### 压力
+使用工具[Webbench](https://github.com/linyacool/WebBench)，开启1000客户端进程，时间为60s，发起Get请求获取[测试页面](https://github.com/liuzengh/httpserver/blob/main/src/index.html)。
+
+### 测试环境
+* 核心数：8
+* 内存容量：8G
+* 操作系统：Ubuntu 16.04
+
+### 测试细节
+
+* 测试了非空的短连接，涉及到了对请求页面磁盘读写
+* 受限于网络带宽和硬件资源，采用本地测试
+* 关闭关闭了所有日志输出，但是会在标准输出上打印请求报文的请求行和头部信息
+* 线程池开启4线程，加上主线程一共有5个线程。
+
+### 测试结果
+在测试页面的有2.2~2.3w的QPS。
+![测试结果截图](docs/测试结果截图.png)
 
 > 实际场景1：Web服务器一般而言是I/O密集的，比如经常读写文件，访问数据库等。由于I/O操作远远没有CPU的计算速度快，所以让程序阻塞于I/O操作将浪费大量的CPU时间。如果程序有多个执行线程，则当前被I/O操作锁阻塞的执行线程可以主动放弃CPU（或由操作系统来调度），并将执行权转移到其他线程，这样一来CPU就可以做更加有意义的事情，而不是等待I/O操作完成，因此CPU的利用率显著提升。
 #### 解决方案：
@@ -89,7 +118,9 @@ for(int i = 0; i < 1000000; ++i)
 ## 参考文献
 1. [游双. Linux高性能服务器编程[M]. 北京:机械工业出版社,2013.](https://book.douban.com/subject/24722611/) 
 2. [陈硕. Linux多线程服务端编程——使用muduo C++网络库. 北京:电子工业出版社,2013](https://book.douban.com/subject/20471211/)
-3. https://github.com/chenshuo/recipes
-4. https://github.com/linyacool/WebServer
-5. https://github.com/qinguoyi/TinyWebServer
-6. https://github.com/fmtlib/fmt
+3. [从压测工具谈并发、压力、吞吐量](https://www.xmeter.net/wordpress/?p=152)
+4. https://github.com/chenshuo/recipes
+5. https://github.com/linyacool/WebServer
+6. https://github.com/qinguoyi/TinyWebServer
+7. fmt格式化库：https://github.com/fmtlib/fmt
+8. Webbench: https://github.com/linyacool/WebBench
