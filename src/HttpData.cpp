@@ -542,15 +542,19 @@ HeaderState HttpData::parseHeaders() {
 
 AnalysisState HttpData::analysisRequest() {
   if (method_ == METHOD_POST) { } 
-  else if (method_ == METHOD_GET || method_ == METHOD_HEAD) {
+  else if (method_ == METHOD_GET || method_ == METHOD_HEAD) 
+  {
     std::string header;
     header += "HTTP/1.1 200 OK\r\n";
     if (headers_.find("Connection") != headers_.end() &&
         (headers_["Connection"] == "Keep-Alive" ||
-         headers_["Connection"] == "keep-alive")) {
+         headers_["Connection"] == "keep-alive")) 
+    {
       keepAlive_ = true;
-      header += std::string("Connection: Keep-Alive\r\n") + "Keep-Alive: timeout=" +
-                std::to_string(DEFAULT_KEEP_ALIVE_TIME) + "\r\n";
+      header += std::string("Connection: Keep-Alive\r\n") 
+                + "Keep-Alive: timeout=" 
+                +  std::to_string(DEFAULT_KEEP_ALIVE_TIME) 
+                + "\r\n";
     }
     int dot_pos = fileName_.find('.');
     std::string filetype;
@@ -565,7 +569,8 @@ AnalysisState HttpData::analysisRequest() {
           "HTTP/1.1 200 OK\r\nContent-type: text/plain\r\n\r\nHello World";
       return AnalysisState::ANALYSIS_SUCCESS;
     }
-    if (fileName_ == "favicon.ico") {
+    if (fileName_ == "favicon.ico") 
+    {
       header += "Content-Type: image/png\r\n";
       header += "Content-Length: " + std::to_string(sizeof favicon) + "\r\n";
       header += "Server: liuzengh's tiny http server\r\n";
@@ -573,12 +578,14 @@ AnalysisState HttpData::analysisRequest() {
       header += "\r\n";
       outBuffer_ += header;
       outBuffer_ += std::string(favicon, favicon + sizeof favicon);
-      ;
+
       return AnalysisState::ANALYSIS_SUCCESS;
     }
 
     struct stat sbuf;
-    if (stat(fileName_.c_str(), &sbuf) < 0) {
+    int src_fd = open(fileName_.c_str(), O_RDONLY, 0);
+    if (src_fd == -1) 
+    {
       header.clear();
       handleError(connFd_, 404, "Not Found!");
       return AnalysisState::ANALYSIS_ERROR;
@@ -591,24 +598,24 @@ AnalysisState HttpData::analysisRequest() {
     outBuffer_ += header;
 
     if (method_ == METHOD_HEAD) return AnalysisState::ANALYSIS_SUCCESS;
-
-    int src_fd = open(fileName_.c_str(), O_RDONLY, 0);
-    if (src_fd < 0) {
+     
+    if (fstat(src_fd, &sbuf) == -1) 
+    {
       outBuffer_.clear();
       handleError(connFd_, 404, "Not Found!");
       return AnalysisState::ANALYSIS_ERROR;
     }
     void *mmapRet = mmap(NULL, sbuf.st_size, PROT_READ, MAP_PRIVATE, src_fd, 0);
     close(src_fd);
-    if (mmapRet == (void *)-1) {
-      munmap(mmapRet, sbuf.st_size);
+    if (mmapRet == MAP_FAILED) 
+    {
       outBuffer_.clear();
       handleError(connFd_, 404, "Not Found!");
       return AnalysisState::ANALYSIS_ERROR;
     }
     char *src_addr = static_cast<char *>(mmapRet);
     outBuffer_ += std::string(src_addr, src_addr + sbuf.st_size);
-    ;
+
     munmap(mmapRet, sbuf.st_size);
     return AnalysisState::ANALYSIS_SUCCESS;
   }
