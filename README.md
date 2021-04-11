@@ -95,7 +95,56 @@ for(int i = 0; i < 1000000; ++i)
 
 ![测试结果截图](docs/测试结果截图.png)
 
+### 补充：Webbench多线程版本
 
+webbench是一个简易的服务器压力测试工具，其原理是父进程fork多个子进程充当客户端，父子进程通过管道进行通信。在子进程退出循环后会向管道里面写入测试结果，父进程读取每个子的测试结果进行汇总。每个子进程的都处在一个死循环中，不断地创建新的连接对服务器发送请求，并统计该次请求的信息，每次轮循环都会检查超时标识，当检查到超时才退出循环。超时的实现思路是在每个子进程用alarm函数创建一个定时器，当超时发送会产生SIGALARM信号，预先设置的信号处理函数会把超时标识置为ture。
+
+我的想法是用多线程来替代多进程，改下写Webbench。具体思路如下:
+1. 定义一个结构体来保存每个线程的测试结果, `result`变量被声明为`thread_local`，在每个线程里面有自己的一份拷贝。
+
+```c++
+struct resultType {
+    int speed;
+    int failed;
+    int bytes;
+    resultType& operator+=(const resultType &rhs) {
+        speed += rhs.speed; 
+        failed += rhs.failed;
+        bytes += rhs.bytes;
+        return *this;
+    }
+};
+thread_local resultType result  = { 0, 0, 0};
+```
+
+2. 使用std::sync来创建异步线程，使用vector<std::future<resultType>> 来保存每个线程函数`benchcore`的的返回值。
+
+```c++
+resultType benchcore(const char *host,const int port,const char *req);
+
+vector<future<resultType>> results(clients);
+    for(auto && client_result : results) {
+        client_result = async(launch::async, benchcore, host, proxyport, request);
+    }
+
+    for(auto && client_result : results) {
+        result += client_result.get();
+
+    }
+```
+
+3. 定时器最好不使用信号来实现，这里就直接创建一个过期时间变量`expired_time`，在循环体中每次检查当前时间是否大于过期时间。
+
+```
+typedef chrono::steady_clock::time_point TimeStamp;
+typedef chrono::steady_clock TimeClock;
+TimeStamp expired_time = TimeClock::now() + chrono::milliseconds(1000 * benchtime);
+while(ture) {
+    if(TimeClock::now() > expired_time) {
+    ... //omit
+    }
+}
+```
 ## 改进之处
 
 1. 因为日志库不能每条消息都flush硬盘，更不能每条日志都open/close文件，这样性能开销太大。可以采用是定期（例如3秒）将缓冲区内的日志消息flush到硬盘。
